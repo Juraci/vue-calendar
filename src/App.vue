@@ -1,18 +1,37 @@
 <template>
   <div id="app">
-    <CalendarWeek />
-    <CalendarEntry />
+    <CalendarWeek
+      :week="sharedState.seedData"
+      :setActiveDay="setActiveDay"
+    />
+    <CalendarEntry
+      :getActiveDay="getActiveDay"
+    />
   </div>
 </template>
 
 <script>
+import { store } from './store.js'
 import CalendarWeek from './components/CalendarWeek.vue'
 import CalendarEntry from './components/CalendarEntry.vue'
 export default {
   name: 'app',
+  data () {
+    return {
+      sharedState: store.init()
+    }
+  },
   components: {
     CalendarWeek,
     CalendarEntry
+  },
+  methods: {
+    setActiveDay (dayId) {
+      store.setActiveDay(dayId)
+    },
+    getActiveDay () {
+      return store.getActiveDay()
+    }
   }
 }
 </script>

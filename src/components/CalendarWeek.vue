@@ -2,22 +2,27 @@
   <div id="calendar-week" class="container">
     <div class="columns is-mobile">
       <CalendarDay
-        v-for="day in sharedState.seedData"
+        v-for="day in week"
         :key="day.id"
         :day="day"
+        :handleDayInteraction="setActiveDay"
       />
     </div>
   </div>
 </template>
 
 <script>
-import { store } from '../store.js'
 import CalendarDay from './CalendarDay.vue'
 export default {
   name: 'CalendarWeek',
-  data () {
-    return {
-      sharedState: store.state
+  props: {
+    week: {
+      type: Array,
+      defaul: []
+    },
+    setActiveDay: {
+      type: Function,
+      default: () => {}
     }
   },
   components: { CalendarDay }

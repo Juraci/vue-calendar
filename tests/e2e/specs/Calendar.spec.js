@@ -15,4 +15,11 @@ describe('Calendar tasks', () => {
     cy.visit('/')
     cy.get('#calendar-entry').should('be.visible')
   })
+
+  it('Makes the clicked day, the active day in the form submission', () => {
+    cy.visit('/')
+    cy.get('#active-day').contains('Monday')
+    cy.get('.day.column.Friday').click()
+    cy.get('#active-day').contains('Friday')
+  })
 })

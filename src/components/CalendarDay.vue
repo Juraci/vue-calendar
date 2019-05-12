@@ -1,5 +1,5 @@
 <template>
-  <div class="day column">
+  <div class="day column" :class="day.fullTitle" @click="handleDayInteraction(day.id)">
     <div class="day-banner has-text-white has-text-centered">{{ day.abbvTitle }}</div>
     <div class="day-details">
       <div class="day-number">{{ day.id }}</div>
@@ -7,6 +7,7 @@
         v-for="(event, index) in day.events"
         :key="index"
         :event="event"
+        :day="day"
       />
     </div>
   </div>
@@ -16,7 +17,16 @@
 import CalendarEvent from './CalendarEvent.vue'
 export default {
   name: 'CalendarDay',
-  props: ['day'],
+  props: {
+    day: {
+      type: Object,
+      required: true
+    },
+    handleDayInteraction: {
+      type: Function,
+      default: () => {}
+    }
+  },
   components: { CalendarEvent }
 }
 </script>

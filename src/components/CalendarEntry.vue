@@ -2,7 +2,7 @@
   <div id="calendar-entry">
     <div class="calendar-entry-note">
       <input type="text" placeholder="New Event" />
-      <p class="calendar-entry-day">Day of event: <span class="bold">Monday</span></p>
+      <p class="calendar-entry-day">Day of event: <span id="active-day" class="bold">{{ title }}</span></p>
       <a class="button is-primary is-small is-outlined">Submit</a>
     </div>
   </div>
@@ -10,7 +10,18 @@
 
 <script>
 export default {
-  name: 'CalendarEntry'
+  name: 'CalendarEntry',
+  props: {
+    getActiveDay: {
+      type: Function,
+      default: () => {}
+    }
+  },
+  computed: {
+    title () {
+      return this.getActiveDay().fullTitle
+    }
+  }
 }
 </script>
 
