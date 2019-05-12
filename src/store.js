@@ -17,6 +17,9 @@ export const store = {
       })
   },
   getActiveDay () {
-    return this.state.seedData.find(day => day.active)
+    return this
+      .state
+      .seedData
+      .find(day => day.active)
   }
 }

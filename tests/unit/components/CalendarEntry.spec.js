@@ -16,7 +16,7 @@ describe('CalendarEntry', () => {
         active: true
       }
     }
-    
+
     const wrapper = shallowMount(CalendarEntry, {
       propsData: {
         getActiveDay
