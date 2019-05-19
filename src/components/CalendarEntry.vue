@@ -1,9 +1,14 @@
 <template>
   <div id="calendar-entry">
     <div class="calendar-entry-note">
-      <input type="text" placeholder="New Event" />
+      <input type="text" placeholder="New Event" v-model="eventEntry" required />
       <p class="calendar-entry-day">Day of event: <span id="active-day" class="bold">{{ title }}</span></p>
-      <a class="button is-primary is-small is-outlined">Submit</a>
+      <a
+        class="button is-primary is-small is-outlined"
+        @click="handleSubmit(eventEntry)"
+      >
+        Submit
+      </a>
     </div>
   </div>
 </template>
@@ -14,12 +19,27 @@ export default {
   props: {
     getActiveDay: {
       type: Function,
+      default: () => { return { fullTitle: 'default' } }
+    },
+    addNewEvent: {
+      type: Function,
       default: () => {}
     }
   },
   computed: {
     title () {
       return this.getActiveDay().fullTitle
+    }
+  },
+  data () {
+    return {
+      eventEntry: ''
+    }
+  },
+  methods: {
+    handleSubmit (eventEntry) {
+      this.addNewEvent(eventEntry)
+      this.eventEntry = ''
     }
   }
 }

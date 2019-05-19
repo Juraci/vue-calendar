@@ -27,7 +27,7 @@ describe('store', () => {
     store.init(data)
   })
 
-  context('.setActiveDay', () => {
+  describe('.setActiveDay', () => {
     it('sets the active da to true and all the others to false', () => {
       store.setActiveDay(2)
       expect(store.state.seedData[0].active).to.eq(false)
@@ -35,9 +35,18 @@ describe('store', () => {
     })
   })
 
-  context('.getActiveDay', () => {
+  describe('.getActiveDay', () => {
     it('returns the active day', () => {
       expect(store.getActiveDay().fullTitle).to.eq('Monday')
+    })
+  })
+
+  describe('.addNewEvent', () => {
+    it('adds a new event to the active day', () => {
+      store.addNewEvent('Learn Vuex')
+      expect(store.state.seedData[0].events.length).to.eq(3)
+      expect(store.state.seedData[0].events[2].details).to.eq('Learn Vuex')
+      expect(store.state.seedData[0].events[2].edit).to.eq(false)
     })
   })
 })

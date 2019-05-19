@@ -1,3 +1,4 @@
+import sinon from 'sinon'
 import { shallowMount } from '@vue/test-utils'
 import CalendarEntry from '@/components/CalendarEntry.vue'
 import { expect } from '../sinonChaiSetup'
@@ -23,5 +24,21 @@ describe('CalendarEntry', () => {
       }
     })
     expect(wrapper.find('#active-day').text()).to.eq('Monday')
+  })
+
+  it('submits the new event', () => {
+    const fakeSubmit = sinon.fake()
+    const myEvent = 'some task'
+
+    const wrapper = shallowMount(CalendarEntry, {
+      propsData: {
+        addNewEvent: fakeSubmit
+      }
+    })
+
+    wrapper.find('input').setValue(myEvent)
+    wrapper.find('.button').trigger('click')
+
+    expect(fakeSubmit).to.have.been.calledWith(myEvent)
   })
 })

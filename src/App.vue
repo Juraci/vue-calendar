@@ -6,6 +6,7 @@
     />
     <CalendarEntry
       :getActiveDay="getActiveDay"
+      :addNewEvent="addNewEvent"
     />
   </div>
 </template>
@@ -31,6 +32,9 @@ export default {
     },
     getActiveDay () {
       return store.getActiveDay()
+    },
+    addNewEvent (eventDescription) {
+      store.addNewEvent(eventDescription)
     }
   }
 }
