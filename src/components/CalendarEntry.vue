@@ -10,6 +10,9 @@
         Submit
       </a>
     </div>
+    <p class="error-message" v-if="error" >
+      You must type something first!
+    </p>
   </div>
 </template>
 
@@ -33,11 +36,17 @@ export default {
   },
   data () {
     return {
-      eventEntry: ''
+      eventEntry: '',
+      error: false
     }
   },
   methods: {
     handleSubmit (eventEntry) {
+      if (eventEntry === '') {
+        this.error = true
+        return
+      }
+      this.error = false
       this.addNewEvent(eventEntry)
       this.eventEntry = ''
     }
@@ -84,6 +93,13 @@ export default {
       display: block;
       margin: 0 auto;
     }
+  }
+
+  .error-message {
+    color: red;
+    font-size: 13px;
+    margin-top: 5px;
+    text-align: center;
   }
 }
 </style>

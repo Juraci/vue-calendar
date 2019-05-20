@@ -41,4 +41,12 @@ describe('CalendarEntry', () => {
 
     expect(fakeSubmit).to.have.been.calledWith(myEvent)
   })
+
+  it('dislays an error when trying to add an empty event', () => {
+    const wrapper = shallowMount(CalendarEntry, {})
+    
+    wrapper.find('.button').trigger('click')
+
+    expect(wrapper.find('.error-message').text()).to.eq('You must type something first!')
+  })
 })
