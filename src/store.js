@@ -25,5 +25,25 @@ export const store = {
   addNewEvent (eventDetails) {
     const activeDay = this.getActiveDay()
     activeDay.events.push({ details: eventDetails, edit: false })
+  },
+  editEvent (dayId, eventDetails) {
+    const dayObj = this
+      .state
+      .seedData
+      .find(day => day.id === dayId)
+
+    const eventObj = dayObj.events.find(event => event.details === eventDetails)
+
+    eventObj.edit = true
+  },
+  updateEvent (dayId, currentDetails, newDetails) {
+    const dayObj = this
+      .state
+      .seedData
+      .find(day => day.id === dayId)
+
+    const eventObj = dayObj.events.find(event => event.details === currentDetails)
+    eventObj.details = newDetails
+    eventObj.edit = false
   }
 }

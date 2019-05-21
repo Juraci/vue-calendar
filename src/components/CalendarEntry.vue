@@ -46,6 +46,7 @@ export default {
         this.error = true
         return
       }
+
       this.error = false
       this.addNewEvent(eventEntry)
       this.eventEntry = ''

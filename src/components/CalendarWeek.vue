@@ -6,6 +6,8 @@
         :key="day.id"
         :day="day"
         :handleDayInteraction="setActiveDay"
+        :editEvent="editEvent"
+        :updateEvent="updateEvent"
       />
     </div>
   </div>
@@ -21,6 +23,14 @@ export default {
       defaul: []
     },
     setActiveDay: {
+      type: Function,
+      default: () => {}
+    },
+    editEvent: {
+      type: Function,
+      default: () => {}
+    },
+    updateEvent: {
       type: Function,
       default: () => {}
     }

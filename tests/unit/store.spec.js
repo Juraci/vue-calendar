@@ -49,4 +49,19 @@ describe('store', () => {
       expect(store.state.seedData[0].events[2].edit).to.eq(false)
     })
   })
+
+  describe('.editEvent', () => {
+    it('toggles the edit flag on the event of the day passed', () => {
+      store.editEvent(2, 'Yoga/Gym')
+      expect(store.state.seedData[1].events[0].edit).to.eq(true)
+    })
+  })
+
+  describe('.updateEvent', () => {
+    it('updates the event', () => {
+      store.updateEvent(2, 'Yoga/Gym', 'Learn scoped slots')
+      expect(store.state.seedData[1].events[0].details).to.eq('Learn scoped slots')
+      expect(store.state.seedData[1].events[0].edit).to.eq(false)
+    })
+  })
 })

@@ -8,6 +8,8 @@
         :key="index"
         :event="event"
         :day="day"
+        :handleEditEvent="editEvent"
+        :handleUpdateEvent="updateEvent"
       />
     </div>
   </div>
@@ -21,6 +23,14 @@ export default {
     day: {
       type: Object,
       required: true
+    },
+    editEvent: {
+      type: Function,
+      default: () => {}
+    },
+    updateEvent: {
+      type: Function,
+      default: () => {}
     },
     handleDayInteraction: {
       type: Function,

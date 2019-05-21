@@ -3,6 +3,8 @@
     <CalendarWeek
       :week="sharedState.seedData"
       :setActiveDay="setActiveDay"
+      :editEvent="editEvent"
+      :updateEvent="updateEvent"
     />
     <CalendarEntry
       :getActiveDay="getActiveDay"
@@ -35,6 +37,12 @@ export default {
     },
     addNewEvent (eventDescription) {
       store.addNewEvent(eventDescription)
+    },
+    editEvent (dayId, eventDetails) {
+      store.editEvent(dayId, eventDetails)
+    },
+    updateEvent (dayId, currentDetails, newDetails) {
+      store.updateEvent(dayId, currentDetails, newDetails)
     }
   }
 }
